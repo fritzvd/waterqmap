@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block head %}
+      <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+      <script type="text/javascript">
+
+        $(function() {
+	        $('#date').datepicker({
+                onSelect: showDate,
+                beforeShowDay: enableDates,
+                dateFormat: 'mm-dd-yy'
+            });
+        });
+        
+        function showDate(date){
+          $('#map')
+            if (map.layers[1] !=null) {map.layers[1].destroy()}
+            var dateLayer = new OpenLayers.Layer.WMS("WillberemovedLayer",
+                "{{ map.url }}",
+                {
+                    layers: $.datepicker.formatDate('mmdd', new Date('' + date)),
+                    format: 'image/png',
+                    transparent: true,
+                },
+                {
+                    isBaseLayer: false,
+                    buffer: 0,
+                }
+                );
+            
+            map.addLayer(dateLayer);
+                    
+         }
+        
+        $(function() {
+          $('#map')
+           extent = new OpenLayers.Bounds(-3.1,49.2,7.1,54.2);
+           map = new OpenLayers.Map ("map", {
+				controls:[
+					new OpenLayers.Control.Navigation(),
+					new OpenLayers.Control.PanZoomBar(),
+					new OpenLayers.Control.Attribution()],
+	
+			} );
+            var wms = new OpenLayers.Layer.WMS(
+            "OpenLayers WMS",
+            "http://labs.metacarta.com/wms/vmap0",
+            {layers: 'basic'},
+            {isBaseLayer: true}
+            );
+            
+            map.addLayer(wms);
+            map.zoomToExtent(extent);
+          
+          });
+       </script>
+{% endblock %}
+
+{% block body %}
+        <div id="date"></div>
+        <div id="map" style="width: 600px; height: 300px"></div>
+        {{ map.map_id }}
+        {{ map.url }}<br>
+        {{ map.mapdate_set.all.1.date|date:"md" }}
+{% endblock %}

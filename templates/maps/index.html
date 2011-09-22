@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+       <style type="text/css">
+         @import "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/redmond/jquery-ui.css";
+       </style>
+       <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+       <script type="text/javascript" src="days/"></script>
+       <script type="text/javascript">
+
+        function showDate(date){
+          $('#map')
+            if (map.layers[1] !=null) {map.layers[1].destroy()}
+            var dateLayer = new OpenLayers.Layer.WMS("WillberemovedLayer",
+                "{{ map.url }}",
+                {
+                    layers: $.datepicker.formatDate('mmdd', new Date('' + date)),
+                    format: 'image/png',
+                    transparent: true,
+                },
+                {
+                    isBaseLayer: false,
+                    buffer: 0,
+                }
+                );
+            
+            map.addLayer(dateLayer);
+                    
+         }
+        
+        $(function() {
+          $('#map')
+           extent = new OpenLayers.Bounds(-3.1,49.2,7.1,54.2);
+           map = new OpenLayers.Map ("map", {
+				controls:[
+					new OpenLayers.Control.Navigation(),
+					new OpenLayers.Control.PanZoomBar(),
+					new OpenLayers.Control.Attribution()],
+	
+			} );
+            var wms = new OpenLayers.Layer.WMS(
+            "OpenLayers WMS",
+            "http://labs.metacarta.com/wms/vmap0",
+            {layers: 'basic'},
+            {isBaseLayer: true}
+            );
+            
+            map.addLayer(wms);
+            map.zoomToExtent(extent);
+          
+          });
+       </script>
+    </head>
+
+    <body>
+        <div id="map" style="width: 600px; height: 300px"></div>
+        <div id="date"></div>
+        {{ map.map_id }}
+        {{ map.url }}<br>
+        {{ map.mapdate_set.all.1.date|date:"md" }}
+    </body>
+</html>
+
