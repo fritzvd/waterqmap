@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block head %}
+{% block js %}
       <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+      <script>window.OpenLayers || document.write('<script src="/media/js/OpenLayers.js">\x3C/script>')</script> 
       <script type="text/javascript" src="days/"></script>
       <script type="text/javascript">
 
@@ -57,9 +58,8 @@
 {% endblock %}
 
 {% block main %}
-        <div id="date"></div>
-        <div id="map" style="width: 600px; height: 300px"></div>
-        {{ map.map_id }}
-        {{ map.url }}<br>
-        {{ map.mapdate_set.all.1.date|date:"md" }}
+        <section id="datesnmaps" class="row">
+          <div id="date" class="fourcol"></div>
+          <div id="map" class="eightcol last" style="height: 300px"></div>
+        </section>
 {% endblock %}

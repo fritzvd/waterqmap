@@ -1,0 +1,28 @@
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    background: url(../img/specks.png);
+    }
+
+h1{
+    font-size: 130%;
+    font-weight:bold;
+    }
+
+header, section, article{
+    padding: 1em 0;
+    }
+
+header{
+/*    background: url(../img/topstrip.png) repeat-x center;*/
+    background-color: rgba(240, 240, 240, .6);
+    }
+        
+
+#main {
+  background-color: rgb(140,208,255);
+  background: -moz-linear-gradient(center top , rgba(140,208,255,.7), rgba(115,180,230,.7)) repeat scroll 0 0 transparent;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, rgba(140,208,255,.7)), color-stop(1, rgba(115,180,230,.7)) );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#778cd0ff', endColorstr='#668cd0ff');
+  background: -o-linear-gradient(rgba(140,208,255,.7),rgba(115,180,230,.7));
+  color: #585656;
