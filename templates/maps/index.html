@@ -1,20 +1,28 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-       <style type="text/css">
-         @import "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/redmond/jquery-ui.css";
-       </style>
-       <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
-       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-       <script type="text/javascript" src="days/"></script>
-       <script type="text/javascript">
+{% extends "base.html" %}
+{% block js %}
+      <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+      <script>window.OpenLayers || document.write('<script src="/media/js/OpenLayers.js">\x3C/script>')</script> 
+      <script type="text/javascript">
+      var map_url = document.getElementById('mapselector');
+      document.write('<script src="1/days/">\x3C/script>')</script> 
+      </script>
+      <script type="text/javascript">
 
+        $(function() {
+	        $('#date').datepicker({
+                onSelect: showDate,
+                beforeShowDay: enableDates,
+                dateFormat: 'mm-dd-yy'
+            });
+        });
+        
+           
         function showDate(date){
           $('#map')
+            var map_url = document.getElementById('mapselector');
             if (map.layers[1] !=null) {map.layers[1].destroy()}
             var dateLayer = new OpenLayers.Layer.WMS("WillberemovedLayer",
-                "{{ map.url }}",
+                map_url.options[map_url.selectedIndex].value,
                 {
                     layers: $.datepicker.formatDate('mmdd', new Date('' + date)),
                     format: 'image/png',
@@ -52,14 +60,16 @@
           
           });
        </script>
-    </head>
+{% endblock %}
 
-    <body>
-        <div id="map" style="width: 600px; height: 300px"></div>
-        <div id="date"></div>
-        {{ map.map_id }}
-        {{ map.url }}<br>
-        {{ map.mapdate_set.all.1.date|date:"md" }}
-    </body>
-</html>
-
+{% block main %}
+        <section id="datesnmaps" class="row content">
+          <form action="">
+            <select id="mapselector" name="maps">
+              {% for map in maps_list %}<option value="{{ map.url }}">{{ map.title }}</option>{% endfor %}
+            </select>
+          </form>          
+          <div id="date" class="fourcol"></div>
+          <div id="map" class="eightcol last" style="height: 300px"></div>
+        </section>
+{% endblock %}

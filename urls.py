@@ -6,6 +6,7 @@ import settings
 urlpatterns = patterns('',
 #    (r'^$', 'portal.maps.views.map_view', name='map'),
     (r'^admin/', include(admin.site.urls)),
+    (r'^maps/$', 'maps.views.index'),
     (r'^maps/(?P<map_id>\d+)/$', 'maps.views.map_view'),
     (r'^maps/(?P<map_id>\d+)/days/$', 'maps.views.json_dates'),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', 

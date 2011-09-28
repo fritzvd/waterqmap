@@ -37,7 +37,16 @@
             </div>
             <div class="threecol"></div>
             <div class="threecol last">
-              {% block login %}{% endblock %}
+              {% if user.is_authenticated %}
+              <!-- Authenticate account menu -->
+              {% else %}
+              <h3>Login</h3>
+              <form action="/login/" method="post" accept-charset="utf-8">
+              <label for="username">Username</label><input type="text" name="username" value="" id="username" />
+              <label for="password">Password</label><input type="password" name="password" value="" id="password" />
+              <p><input type="submit" value="Login →"></p>
+              </form>
+              {% endif %}
             </div>
           </div>
         </header>

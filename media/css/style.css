@@ -15,9 +15,14 @@ header, section, article{
 
 header{
 /*    background: url(../img/topstrip.png) repeat-x center;*/
-    background-color: rgba(240, 240, 240, .6);
+    background-color: rgba(240, 240, 240, .8);
     }
-        
+    
+.content {
+    background: rgba(240, 240, 240, .6);
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    }    
 
 #main {
   background-color: rgb(140,208,255);
