@@ -1,4 +1,4 @@
-from maps.models import Map,MapDate
+from waterqmap.maps.models import Map,MapDate
 from django.contrib import admin
 
 class MapDateInline(admin.TabularInline):

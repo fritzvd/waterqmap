@@ -19,7 +19,7 @@ RSYNC_EXCLUDE = (
     'fabfile.py',
     'bootstrap.py',
 )
-env.home = '/home/fritz/WebDev'
+env.home = '/var/www/django/'
 env.project = 'waterqmap'
 
 
@@ -32,9 +32,9 @@ def _setup_path():
 
 def staging():
     """ use staging environment on remote host"""
-    env.user = 'fritz'
+    env.user = 'root'
     env.environment = 'staging'
-    env.hosts = ['173.203.208.254']
+    env.hosts = ['192.168.1.20']
     _setup_path()
 
 
@@ -108,8 +108,9 @@ def update_apache_conf():
     """ upload apache configuration to remote host """
     require('root', provided_by=('staging', 'production'))
     source = os.path.join('apache', '%(environment)s.conf' % env)
-    dest = os.path.join(env.home, 'apache.conf.d')
+    dest = os.path.join('/etc/apache2/sites-available/', 'waterqmap')
     put(source, dest, mode=0755)
+    run('a2ensite ' + env.project)
     apache_reload()
 
 
@@ -122,13 +123,13 @@ def configtest():
 def apache_reload():    
     """ reload Apache on remote host """
     require('root', provided_by=('staging', 'production'))
-    run('sudo /etc/init.d/apache2 reload')
+    run('/etc/init.d/apache2 reload')
 
 
 def apache_restart():    
     """ restart Apache on remote host """
     require('root', provided_by=('staging', 'production'))
-    run('sudo /etc/init.d/apache2 restart')
+    run('/etc/init.d/apache2 restart')
 
 
 def symlink_django():    

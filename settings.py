@@ -1,21 +1,21 @@
 # Django settings for portal project.
 
-DEBUG = False
+DEBUG = True
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
-PROJECT_DIR = "/home/fritz/WebDev/waterqmap/"
+PROJECT_DIR = "/var/www/django/www/staging/waterqmap/"
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': '', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'waterqmap',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': 'pw4mysql123hup!',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -94,7 +94,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'portal.urls'
+ROOT_URLCONF = 'waterqmap.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

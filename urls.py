@@ -4,11 +4,11 @@ admin.autodiscover()
 import settings
 
 urlpatterns = patterns('',
-#    (r'^$', 'portal.maps.views.map_view', name='map'),
+#    (r'^$', 'maps.views.map_view', name='map'),
     (r'^admin/', include(admin.site.urls)),
-    (r'^maps/$', 'maps.views.index'),
-    (r'^maps/(?P<map_id>\d+)/$', 'maps.views.map_view'),
-    (r'^maps/(?P<map_id>\d+)/days/$', 'maps.views.json_dates'),
+    (r'^maps/$', 'waterqmap.maps.views.index'),
+    (r'^maps/(?P<map_id>\d+)/$', 'waterqmap.maps.views.map_view'),
+    (r'^maps/(?P<map_id>\d+)/days/$', 'waterqmap.maps.views.json_dates'),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', 
     {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
