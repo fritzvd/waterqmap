@@ -18,6 +18,7 @@ RSYNC_EXCLUDE = (
     'local_settings.py',
     'fabfile.py',
     'bootstrap.py',
+    '.git/*',
 )
 env.home = '/var/www/django/'
 env.project = 'waterqmap'
