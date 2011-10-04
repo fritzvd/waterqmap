@@ -6,7 +6,7 @@ admin.autodiscover()
 import settings
 
 urlpatterns = patterns('',
-    url(r"^$", home_page),
+    url(r"^$", home_page,),
     (r'^admin/', include(admin.site.urls)),
 
     (r'^maps/', include("waterqmap.maps.urls")),

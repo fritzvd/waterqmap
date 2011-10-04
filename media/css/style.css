@@ -37,7 +37,10 @@ header{
     color: white;
     z-index: 999;
     text-align: right;
-    top: -30px;
+    top: 0;
+    left: 70.5%;
+    width: 22.05%;
+    position: absolute;
     }
     
 #login-link{
@@ -71,7 +74,6 @@ header{
     }
     
 #login_form{
-    text-align: left;
     padding: 10px;
     background-color:#353535;
     overflow: hidden;
@@ -81,4 +83,8 @@ header{
     -webkit-border-radius:0 0 0 10px;
     -o-border-radius:0 0 0 10px;
     border-radius:0 0 0 10px;
+    }
+    
+label{
+    margin: 0 1em 0 0;
     }
