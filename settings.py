@@ -1,12 +1,14 @@
 # Django settings for portal project.
 
-DEBUG = True
+DEBUG = False
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
-PROJECT_DIR = "/var/www/django/www/staging/waterqmap/"
+import os
+
+PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 
 MANAGERS = ADMINS
 
@@ -46,7 +48,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = PROJECT_DIR + 'media/'
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -57,7 +59,7 @@ STATIC_ROOT = ''
 
 STATIC_URL = '/static/'
 
-ADMIN_MEDIA_PREFIX = '/static/admin/'
+ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 
 STATICFILES_DIRS = (
@@ -74,7 +76,8 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-LOGIN_URL = ('/accounts/login/')
+LOGIN_URL = ('/login/')
+LOGIN_REDIRECT_URL= ('/maps/')  
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'w2o355%)sn(26h%i7abi&i^dh^$d9kcf&1px@ml=ed89_$4ib_'
@@ -85,6 +88,11 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -100,7 +108,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    PROJECT_DIR + 'templates/'
+    os.path.join(PROJECT_DIR, 'templates'),
 )
 
 INSTALLED_APPS = (

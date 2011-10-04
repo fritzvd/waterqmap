@@ -41,7 +41,11 @@ def staging():
 
 def production():
     """ use production environment on remote host"""
-    utils.abort('Production deployment not yet implemented.')
+    """ use staging environment on remote host"""
+    env.user = 'root'
+    env.environment = 'production'
+    env.hosts = ['91.230.245.64']
+    _setup_path()
 
 
 def bootstrap():
@@ -137,7 +141,7 @@ def symlink_django():
     """ create symbolic link so Apache can serve django admin media """
     require('root', provided_by=('staging', 'production'))
     admin_media = os.path.join(env.virtualenv_root,
-                               'src/django/django/contrib/admin/media/')
+                               'lib/python2.6/site-packages/django/contrib/admin/media/')
     media = os.path.join(env.code_root, 'media/admin')
     if not files.exists(media):
         run('ln -s %s %s' % (admin_media, media))

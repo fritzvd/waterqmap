@@ -1,16 +1,20 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
+from django.views.generic.simple import direct_to_template
+from base_views import *
 admin.autodiscover()
 import settings
 
 urlpatterns = patterns('',
-#    (r'^$', 'maps.views.map_view', name='map'),
+    url(r"^$", home_page),
     (r'^admin/', include(admin.site.urls)),
-    (r'^maps/$', 'waterqmap.maps.views.index'),
-    (r'^maps/(?P<map_id>\d+)/$', 'waterqmap.maps.views.map_view'),
-    (r'^maps/(?P<map_id>\d+)/days/$', 'waterqmap.maps.views.json_dates'),
+
+    (r'^maps/', include("waterqmap.maps.urls")),
+
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', 
     {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-    (r'^accounts/login/$', 'django.contrib.auth.views.login'),
+        
+    (r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+    (r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logout.html'}),
 
 )

@@ -7,7 +7,7 @@
       <meta charset="utf-8"> 
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
      
-      <title></title> 
+      <title>Water Insight | {% block title %}{% endblock %}</title> 
       <meta name="description" content=""> 
       <meta name="author" content="Water Insight - Fritz van Deventer"> 
      
@@ -15,9 +15,6 @@
 
       <link rel="stylesheet" href="/media/css/1140.css"> 
       <link rel="stylesheet" href="/media/css/style.css"> 
-      <style type="text/css">
-      @import "/media/css/jquery-ui.css";
-      </style>
       {% block head %}{% endblock %}
       <script src="/media/js/modernizr-2.0.6.min.js"></script>
     </head>
@@ -25,9 +22,9 @@
     <body>
      {% block body %}
      {% endblock %}
-     <div id="container">
+<!--     <div class="container"> container -->
      {{ settings.MEDIA_URL }}
-        <header>
+        <header class="container">
           <div class="row">
             <div class="twocol">
               <a href="/"><img src="/media/img/logo.png" class="logo"></a>
@@ -36,43 +33,79 @@
               <h1>Water Insight</h1>
             </div>
             <div class="threecol"></div>
-            <div class="threecol last">
-              {% if user.is_authenticated %}
-              <!-- Authenticate account menu -->
-              {% else %}
-              <h3>Login</h3>
-              <form action="/login/" method="post" accept-charset="utf-8">
-              <label for="username">Username</label><input type="text" name="username" value="" id="username" />
-              <label for="password">Password</label><input type="password" name="password" value="" id="password" />
-              <p><input type="submit" value="Login →"></p>
-              </form>
+                        <div id="login">
+              <section id="login_form" class="login_slide">
+                {% if user.is_authenticated %}
+                <!-- Authenticate account menu -->
+                <div id="login-link">
+                  <a href="/logout/" class="show_hide">Logout</a>
+                </div>
+                {% else %}
+                {% load url from future %}
+                <form action="/login/" method="post" accept-charset="utf-8">
+                {% csrf_token %}
+                <label for="username">Username</label><input type="text" name="username" value="" id="username" />
+                <label for="password">Password</label><input type="password" name="password" value="" id="password" />
+            <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+            <p><input type="submit" value="Login →"></p>
+                </form>
+              </section>
+              <div id="login-link">
+                <a href="#" class="show_hide">Login</a>
+              </div>
               {% endif %}
-            </div>
+            </div><!-- login -->
+
+            
           </div>
         </header>
         
-        <div id="main" role="main">
-          {% block main %}
+        <div id="preface" role="preface" class="container">
+          <div class="row">
+          {% block preface %}
           {% endblock %}
-          <div id="sidebar" class="fourcol">
-         
           </div>
-          
+        </div>
+        <div id="main" role="main" class="container">
+          <article class="row">
+            {% block article %}
+            {% endblock %}
+              <section class="eightcol">
+              {% block section %}
+              {% endblock %}
+              </section>
+              <aside class="fourcol">
+              {% block aside %}
+              {% endblock %}
+              </aside>
+          </article>
         </div>
         
         <footer class="row">
         
         </footer>
-     </div><!-- end of container -->
+<!--     </div> end of container -->
 
-      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/media/js/jquery.min.js">\x3C/script>')</script> 
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-        <script>window.jQuery.datepicker || document.write('<script src="/media/js/jquery-ui.min.js">\x3C/script>')</script> 
+     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/media/js/jquery.min.js">\x3C/script>')</script>
      
      {% block js %}
      {% endblock %}
-     
+
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+
+                $(".login_slide").hide();
+                $(".show_hide").show();
+
+	        $('.show_hide').click(function(){
+	        $(".login_slide").slideToggle();
+	        });
+
+        });
+
+        </script>
 
     <!--[if lt IE 7 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>

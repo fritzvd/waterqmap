@@ -4,11 +4,11 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
     maps_list = Map.objects.all().order_by('title')
     return render_to_response('maps/index.html', {'maps_list' : maps_list})
 
-@login_required(login_url='/accounts/login/')
 def map_view(request, map_id):
     dates = get_object_or_404(Map, pk=map_id)
     return render_to_response('maps/maps.html', {'map':dates})

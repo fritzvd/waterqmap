@@ -1,5 +1,12 @@
 {% extends "base.html" %}
+{% block head %}
+      <style type="text/css">
+      @import "/media/css/jquery-ui.css";
+      </style>
+{% endblock %}
 {% block js %}
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+        <script>window.jQuery.datepicker || document.write('<script src="/media/js/jquery-ui.min.js">\x3C/script>')</script> 
       <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
       <script>window.OpenLayers || document.write('<script src="/media/js/OpenLayers.js">\x3C/script>')</script> 
       <script type="text/javascript" src="days/"></script>
@@ -57,7 +64,7 @@
        </script>
 {% endblock %}
 
-{% block main %}
+{% block article %}
         <section id="datesnmaps" class="row content">
           <div id="date" class="fourcol"></div>
           <div id="map" class="eightcol last" style="height: 300px"></div>

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% comment %}
+
+Login page to authenticate users.
+
+
+{% load url from future %}
+
+            <div id="login">
+              <section id="login_form" class="login_slide">
+                {% if user.is_authenticated %}
+                <!-- Authenticate account menu -->
+                <div id="login-link">
+                  <a href="/logout/" class="show_hide">Logout</a>
+                </div>
+                {% else %}
+                <form action="{% url 'django.contrib.auth.views.login' %}" method="post" accept-charset="utf-8">
+                {% csrf_token %}
+                <label for="username">Username</label><input type="text" name="username" value="" id="username" />
+                <label for="password">Password</label><input type="password" name="password" value="" id="password" />
+            <input type="hidden" name="next" value="{{ next }}" />
+            <p><input type="submit" value="Login →"></p>
+                </form>
+              </section>
+              <div id="login-link">
+                <a href="#" class="show_hide">Login</a>
+              </div>
+              {% endif %}
+            </div><!-- login -->
+            
+
+{% endcomment %}
+{% load url from future %}
+
+{% block preface %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if user.is_authenticated %}
+                <!-- Authenticate account menu -->
+                <div id="login-link">
+                  <a href="/logout/" class="show_hide">Logout</a>
+                </div>
+                {% else %}
+<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="{{ request.get_full_path }}" />
+</form>
+{% endif %}
+{% endblock %}

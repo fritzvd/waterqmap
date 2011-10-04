@@ -5,29 +5,80 @@ body{
     }
 
 h1{
-    font-size: 130%;
+    font-size: 160%;
     font-weight:bold;
-    }
-
-header, section, article{
-    padding: 1em 0;
     }
 
 header{
 /*    background: url(../img/topstrip.png) repeat-x center;*/
     background-color: rgba(240, 240, 240, .8);
     }
-    
-.content {
+
+.container{
+    padding: 1em 0;
+    }
+
+#content {
     background: rgba(240, 240, 240, .6);
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     }    
 
-#main {
+#preface {
   background-color: rgb(140,208,255);
   background: -moz-linear-gradient(center top , rgba(140,208,255,.7), rgba(115,180,230,.7)) repeat scroll 0 0 transparent;
   background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, rgba(140,208,255,.7)), color-stop(1, rgba(115,180,230,.7)) );
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#778cd0ff', endColorstr='#668cd0ff');
   background: -o-linear-gradient(rgba(140,208,255,.7),rgba(115,180,230,.7));
   color: #585656;
+  }
+
+#login{
+    color: white;
+    z-index: 999;
+    text-align: right;
+    top: -30px;
+    }
+    
+#login-link{
+    background: -moz-linear-gradient(center top , #353535, #222) repeat scroll 0 0 transparent;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #353535), color-stop(1, #222) );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#353535', endColorstr='#222');
+    background-color:#353535;
+    display:inline-block;
+    font-size:13px;
+    font-weight:bold;
+    text-decoration:none;
+    position: relative;
+    z-index: 999;
+    border: 2px solid rgba(100,100,100,.3);
+    border-top: none;
+    -moz-border-radius:0 0 10px 10px;
+    -webkit-border-radius:0 0 10px 10px;
+    -o-border-radius:0 0 10px 10px;
+    border-radius:0 0 10px 10px;
+    }
+    
+#login-link a{
+    padding-left: 20px !important;
+    display: block;
+    width: 80px;
+    text-align: left;
+    position: relative;
+    padding: 0 px;
+    height: 30px;
+    color: #fff;
+    }
+    
+#login_form{
+    text-align: left;
+    padding: 10px;
+    background-color:#353535;
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+    -moz-border-radius:0 0 0 10px;
+    -webkit-border-radius:0 0 0 10px;
+    -o-border-radius:0 0 0 10px;
+    border-radius:0 0 0 10px;
+    }
