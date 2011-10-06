@@ -11,15 +11,19 @@ h1{
 
 header{
 /*    background: url(../img/topstrip.png) repeat-x center;*/
-    background-color: rgba(240, 240, 240, .8);
+/*    background-color: rgba(240, 240, 240, .8);*/
+    }
+
+footer{
+    background-color: rgba(24, 24, 24, .8);
     }
 
 .container{
     padding: 1em 0;
     }
 
-#content {
-    background: rgba(240, 240, 240, .6);
+#main {
+    background: rgba(240, 240, 240, .8);
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     }    

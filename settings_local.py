@@ -9,3 +9,4 @@ DATABASES = {
         'NAME': 'test.db',               
     }
 }
+ADMIN_MEDIA_PREFIX = '/static/admin/'

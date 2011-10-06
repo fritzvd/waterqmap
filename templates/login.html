@@ -1,15 +1,15 @@
-{% load url from future %}
+{% extends "base.html" %}
 
-{% block login %}
-<div id="login">
+{% block preface %}
+<div id="login-main">
               
                 {% if user.is_authenticated %}
                 <!-- Authenticate account menu -->
-                <div id="login-link">
+
                   <a href="/logout/">Logout</a>
-                </div>
+
                 {% else %}
-              <section id="login_form" class="login_slide">
+              <section>
                 {% load url from future %}
                 <form action="/login/" method="post" accept-charset="utf-8">
                 {% csrf_token %}
@@ -20,9 +20,6 @@
             <p><input type="submit" value="Login →"></p>
                 </form>
               </section>
-              <div id="login-link">
-                <a href="#" class="show_hide">Login</a>
-              </div>
               {% endif %}
             </div><!-- login -->
 {% endblock %}

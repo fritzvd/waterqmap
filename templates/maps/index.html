@@ -25,13 +25,23 @@
             });
         });
         
-           
+        var rad_val = "";
+        function radio_map(){
+        for (var i=0; i < document.mapselector.length; i++)
+           {
+           if (document.mapselector[i].checked)
+              {
+              rad_val = document.mapselector[i].value;
+              }
+           }
+        };
+        
         function showDate(date){
           $('#map')
-            var map_url = document.getElementById('mapselector');
+            var map_url = rad_val
             if (map.layers[1] !=null) {map.layers[1].destroy()}
             var dateLayer = new OpenLayers.Layer.WMS("WillberemovedLayer",
-                map_url.options[map_url.selectedIndex].value,
+                map_url,
                 {
                     layers: $.datepicker.formatDate('mmdd', new Date('' + date)),
                     format: 'image/png',
@@ -73,10 +83,8 @@
 
 {% block article %}
         <section id="datesnmaps" class="row content">
-          <form action="">
-            <select id="mapselector" name="maps">
-              {% for map in maps_list %}<option value="{{ map.url }}">{{ map.title }}</option>{% endfor %}
-            </select>
+          <form name="mapselector">
+              {% for map in maps_list %}<input type="radio" value="{{ map.url }}" name="maps" onclick="radio_map()">{{ map.title }}</br>{% endfor %}
           </form>          
           <div id="date" class="fourcol"></div>
           <div id="map" class="eightcol last" style="height: 300px"></div>

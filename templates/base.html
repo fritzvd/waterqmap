@@ -33,8 +33,29 @@
               <h1>Water Insight</h1>
             </div>
             <div class="threecol"></div>
-            {% include "login.html" %}
-            {% block login %}{% endblock %}
+            <div id="login">
+                {% if user.is_authenticated %}
+                <!-- Authenticate account menu -->
+                <div id="login-link">
+                  <a href="/logout/">Logout</a>
+                </div>
+                {% else %}
+              <section id="login_form" class="login_slide">
+                {% load url from future %}
+                <form action="/login/" method="post" accept-charset="utf-8">
+                {% csrf_token %}
+                <label for="username">Username</label><input type="text" name="username" value="" id="username" />
+                <label for="password">Password</label><input type="password" name="password" value="" id="password" />
+                <input type="hidden" name="next" value="{{ NEXT }}" />
+
+            <p><input type="submit" value="Login →"></p>
+                </form>
+              </section>
+              <div id="login-link">
+                <a href="#" class="show_hide">Login</a>
+              </div>
+              {% endif %}
+            </div><!-- login -->
           </div>
         </header>
         
@@ -59,8 +80,10 @@
           </article>
         </div>
         
-        <footer class="row">
-        
+        <footer class="container">
+          <div class="row">
+            Water Insight
+          </div>
         </footer>
 <!--     </div> end of container -->
 
