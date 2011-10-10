@@ -18,7 +18,7 @@ def read_write_dates():
     read_it = rtxt.readlines()
     del read_it[0:1]
     maps = []
-    map_ = Map.objects.filter(url__endswith="2010.map")[0]
+    map_ = Map.objects.filter(url__endswith="2011.map")[1]
     for lines in read_it:
         line = lines.strip()
         month = int(line[0:2])

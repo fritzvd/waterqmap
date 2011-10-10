@@ -12,30 +12,32 @@
       <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
       <script>window.OpenLayers || document.write('<script src="/media/js/OpenLayers.js">\x3C/script>')</script> 
       <script type="text/javascript">
-      var map_url = document.getElementById('mapselector');
-      document.write('<script src="1/days/">\x3C/script>')</script> 
-      </script>
-      <script type="text/javascript">
-
-        $(function() {
+        var rad_val = "";
+        var map_nr = null;
+        
+        function radio_map(){
+        $('#date').datepicker("destroy");
+        for (var i=0; i < document.mapselector.length; i++)
+           {
+           if (document.mapselector[i].checked)
+              {
+              rad_val = document.mapselector[i].value;
+              map_nr = document.mapselector[i].id;
+              }
+           }
+        $('body').append('<script src="' + map_nr + '/days/">\x3C/script>');
+        $(function () {
 	        $('#date').datepicker({
                 onSelect: showDate,
                 beforeShowDay: enableDates,
                 dateFormat: 'mm-dd-yy'
             });
         });
-        
-        var rad_val = "";
-        function radio_map(){
-        for (var i=0; i < document.mapselector.length; i++)
-           {
-           if (document.mapselector[i].checked)
-              {
-              rad_val = document.mapselector[i].value;
-              }
-           }
         };
-        
+
+     
+     </script>
+      <script type="text/javascript">        
         function showDate(date){
           $('#map')
             var map_url = rad_val
@@ -82,11 +84,13 @@
 {% endblock %}
 
 {% block article %}
-        <section id="datesnmaps" class="row content">
+        <section class="row content">
           <form name="mapselector">
-              {% for map in maps_list %}<input type="radio" value="{{ map.url }}" name="maps" onclick="radio_map()">{{ map.title }}</br>{% endfor %}
-          </form>          
-          <div id="date" class="fourcol"></div>
-          <div id="map" class="eightcol last" style="height: 300px"></div>
+              {% for map in maps_list %}<input type="radio" value="{{ map.url }}" name="maps" onclick="radio_map()" id="{{ map.pk }}">{{ map.title }}</br>{% endfor %}
+          </form>
+        </section>
+        <section class="row content">          
+          <div id="date" class="threecol"></div>
+          <div id="map" class="ninecol last" style="height: 300px"></div>
         </section>
 {% endblock %}

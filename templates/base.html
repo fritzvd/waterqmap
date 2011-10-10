@@ -26,13 +26,17 @@
      {{ settings.MEDIA_URL }}
         <header class="container">
           <div class="row">
-            <div class="twocol">
-              <a href="/"><img src="/media/img/logo.png" class="logo"></a>
+            <div class="twocol logo">
+                <a href="/"><!--<img src="/media/img/bwlogo.png" class="logo">--></a>
             </div>
-            <div class="fourcol">
-              <h1>Water Insight</h1>
+            <div class="twocol"></div>
+            <div class="eightcol last">
+            <nav>
+              <ul>
+                <li><a href="/maps/">Maps</a></li>
+              </ul>
+            </nav>
             </div>
-            <div class="threecol"></div>
             <div id="login">
                 {% if user.is_authenticated %}
                 <!-- Authenticate account menu -->
@@ -61,12 +65,16 @@
         
         <div id="preface" role="preface" class="container">
           <div class="row">
+            <div class="twelverows">
+              <h1>Producing maps. High in quality, temporal resolution and information density</h1>
+            </div>
+
           {% block preface %}
           {% endblock %}
           </div>
         </div>
         <div id="main" role="main" class="container">
-          <article class="row">
+          <article>
             {% block article %}
             {% endblock %}
               <section class="eightcol">
