@@ -1,6 +1,6 @@
 # Django settings for portal project.
 
-DEBUG = False
+DEBUG = True
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),

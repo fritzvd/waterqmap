@@ -1,7 +1,6 @@
-import urllib2, datetime
+import urllib2, datetime, os
 from xml.dom.minidom import parse
 from maps.models import Map
-import settings
 
 def feed_dates_to_mapdate():
     print "Go through all Map objects"
@@ -23,8 +22,6 @@ def feed_dates_to_mapdate():
                         day = int(datestring[2:4])
                         date = datetime.date(2011, month, day)
                         singlemap.mapdate_set.get_or_create(date=date)
-
 feed_dates_to_mapdate()
-
 #if __name__ == "__main__":
     
