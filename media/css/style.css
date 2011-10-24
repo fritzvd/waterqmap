@@ -12,8 +12,11 @@ h1{
 
 header.container{
 /*    background: url(../img/topstrip.png) repeat-x center;*/
-    background-color: rgba(2, 2, 2, .8);
-    padding: 0 20px;
+background: rgb(230,230,230);
+    background: -moz-linear-gradient(center top , rgba(255,255,255,.7), rgba(230,230,230,.7)) repeat scroll 0 0 transparent;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, rgba(110,110,110,.7)), color-stop(1, rgba(100,100,100,.7)) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77ffffff', endColorstr='#66cccccc');
+  background: -o-linear-gradient(rgba(255,255,255,.7),rgba(200,200,200.7));
     }
 
 footer{
@@ -21,7 +24,11 @@ footer{
     }
 
 #main {
+  background-color: rgb(255,255,255);
 background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, rgba(255,255,255,.7)), color-stop(1, rgba(255,255,255,.4)) );
+  background: -moz-linear-gradient(center top , rgba(255,255,255,.7), rgba(255,255,255,.4)) repeat scroll 0 0 transparent;
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#778cd0ff', endColorstr='#668cd0ff');
+  background: -o-linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,.4));
     }    
 
 #preface {
@@ -38,26 +45,18 @@ background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, rgb
 /*------ NAV ---*/
 .logo a {
 	outline:none;
-	color:#fff;
+	color:#000;
 	text-decoration:none;
 	display:block;
-	width:120px;
-	height:85px;
-	background-image:url(../img/bwlogo.png);
+	width:113px;
+	height:80px;
+	background-image:url(../img/logo.png);
 	position:relative;
-	
 	-moz-transition:background 0.1s ease-in-out;
 	-webkit-transition:background 0.1s ease-in-out;
-	-0-transition:background 0.1s ease-in-out;
+	o-transition:background 0.1s ease-in-out;
 	transition:background 0.1s ease-in-out;
  }   
-.logo a:active, .logo a:visited, .logo a{
-    background-position: 0 -86px;
-    opacity: 0.9;
-    }
-.logo a:hover, .logo a:focus, .logo a:active{
-    background-position: 0 0;
-    }
 
 nav{
     margin: 0 auto;
@@ -65,14 +64,14 @@ nav{
     overflow: hidden;
     z-index: 1000;
     padding: 16px 0 3px 0;
-    color: #fff;
+    color: #222;
     font-size: 16px;
     font-weight: bold;
 c    text-decoration: none;
     }
 
 nav a, nav a:visited{
-    color: #fff;
+    color: #000;
     text-decoration: none;
     padding:0;
     margin:0;
@@ -92,7 +91,7 @@ nav a:hover,
 nav a:active,
 nav a:focus,
 nav a.active{
-    color: white;
+    color: #000;
     opacity:1;
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
@@ -120,6 +119,7 @@ nav ul li{
 #login-link{
     background: -moz-linear-gradient(center top , #353535, #222) repeat scroll 0 0 transparent;
     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #353535), color-stop(1, #222) );
+    background: -o-linear(#353535, #222);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#353535', endColorstr='#222');
     background-color:#353535;
     display:inline-block;
@@ -167,5 +167,7 @@ article{
 	-webkit-box-shadow:0 0 10px rgba(0,0,0,0.25);
 	-o-box-shadow:0 0 10px rgba(0,0,0,0.25);
 	box-shadow:0 0 10px rgba(0,0,0,0.25);
-	padding: 1em;
 	}
+section.content{
+    padding: 1em;
+    }

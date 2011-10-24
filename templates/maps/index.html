@@ -8,9 +8,9 @@
 
 {% block js %}
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-        <script>window.jQuery.datepicker || document.write('<script src="/media/js/jquery-ui.min.js">\x3C/script>')</script> 
-      <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
-      <script>window.OpenLayers || document.write('<script src="/media/js/OpenLayers.js">\x3C/script>')</script> 
+        <script>window.jQuery.datepicker || document.write('<script src="/media/libs/jquery-ui.min.js">\x3C/script>')</script> 
+      <!--<script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>-->
+      <script>window.OpenLayers || document.write('<script src="/media/libs/OpenLayers.js">\x3C/script>')</script> 
       <script type="text/javascript">
         var rad_val = "";
         var map_nr = null;
@@ -69,6 +69,7 @@
 					new OpenLayers.Control.Attribution()],
 	
 			} );
+
             var wms = new OpenLayers.Layer.WMS(
             "OpenLayers WMS",
             "http://labs.metacarta.com/wms/vmap0",
@@ -85,12 +86,12 @@
 
 {% block article %}
         <section class="row content">
+          <div class="threecol">
           <form name="mapselector">
               {% for map in maps_list %}<input type="radio" value="{{ map.url }}" name="maps" onclick="radio_map()" id="{{ map.pk }}">{{ map.title }}</br>{% endfor %}
           </form>
-        </section>
-        <section class="row content">          
-          <div id="date" class="threecol"></div>
-          <div id="map" class="ninecol last" style="height: 300px"></div>
+          <div id="date"></div>
+          </div>
+          <div id="map" class="ninecol" style="height:500px"></div>
         </section>
 {% endblock %}

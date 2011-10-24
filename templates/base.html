@@ -16,7 +16,7 @@
       <link rel="stylesheet" href="/media/css/1140.css"> 
       <link rel="stylesheet" href="/media/css/style.css"> 
       {% block head %}{% endblock %}
-      <script src="/media/js/modernizr-2.0.6.min.js"></script>
+      <script src="/media/libs/modernizr-2.0.6.min.js"></script>
     </head>
 
     <body>
@@ -66,7 +66,7 @@
         <div id="preface" role="preface" class="container">
           <div class="row">
             <div class="twelverows">
-              <h1>Producing maps. High in quality, temporal resolution and information density</h1>
+              <h1 style="display:none">Producing maps. High in quality, temporal resolution and information density</h1>
             </div>
 
           {% block preface %}
@@ -74,7 +74,7 @@
           </div>
         </div>
         <div id="main" role="main" class="container">
-          <article>
+          <article class="row">
             {% block article %}
             {% endblock %}
               <section class="eightcol">
@@ -96,7 +96,7 @@
 <!--     </div> end of container -->
 
      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/media/js/jquery.min.js">\x3C/script>')</script>
+        <script>window.jQuery || document.write('<script src="/media/libs/jquery.min.js">\x3C/script>')</script>
      
      {% block js %}
      {% endblock %}

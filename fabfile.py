@@ -44,7 +44,7 @@ def production():
     """ use staging environment on remote host"""
     env.user = 'root'
     env.environment = 'production'
-    env.hosts = ['91.230.245.64']
+    env.hosts = ['91.230.245.65']
     _setup_path()
 
 
