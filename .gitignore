@@ -1,0 +1,4 @@
+*.pyc
+test.db
+settings_local.py
+settings.py
